@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
+@onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 
 # Could be fetched via project settings
 # ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -17,13 +18,13 @@ func _ready():
 func _change_state(_state: State) -> void:
 	match _state:
 		State.IDLE:
-			$AnimationPlayer.play("idle")
+			animation_player.play("idle")
 		State.RUN:
-			$AnimationPlayer.play("run")
+			animation_player.play("run")
 		State.JUMP:
-			$AnimationPlayer.play("jump_up")
+			animation_player.play("jump_up")
 		State.HURT:
-			$AnimationPlayer.play("hurt")
+			animation_player.play("hurt")
 		State.DEAD:
 			hide()
 
@@ -44,10 +45,12 @@ func _get_input() -> void:
 		_change_state(State.JUMP)
 		velocity.y = jump_speed
 	
-	if velocity.x != 0:
+	if state in [State.IDLE, State.RUN] and !is_on_floor():
+		_change_state(State.JUMP)
+	elif velocity.x != 0:
 		_change_state(State.RUN)
 	elif velocity.x == 0:
-		_change_state(State.IDLE)
+		_change_state(State.IDLE)	
 
 func _physics_process(_delta: float) -> void:
 	_get_input()
