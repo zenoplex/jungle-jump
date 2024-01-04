@@ -57,3 +57,10 @@ func _physics_process(_delta: float) -> void:
 	_get_input()
 	velocity.y += gravity * _delta
 	move_and_slide()
+
+	if state == State.JUMP and is_on_floor():
+		_change_state(State.IDLE)
+	
+	if state == State.JUMP and velocity.y > 0:
+		animation_player.play("jump_down")
+	
