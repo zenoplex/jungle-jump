@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var sprite: Sprite2D = get_node("Sprite2D")
+
 # Could be fetched via project settings
 # ProjectSettings.get_setting("physics/2d/default_gravity")
 var gravity := 750
@@ -30,10 +32,13 @@ func _get_input() -> void:
 	var is_left_pressed := Input.is_action_pressed("left")
 	var is_jump_pressed := Input.is_action_just_pressed("jump")
 
+	velocity.x = 0
 	if is_right_pressed:
 		velocity.x += run_speed
+		sprite.flip_h = false
 	if is_left_pressed:
 		velocity.x -= run_speed
+		sprite.flip_h = true
 	# Only allow jump if player is touching the floor
 	if is_jump_pressed and is_on_floor():
 		_change_state(State.JUMP)
