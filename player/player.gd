@@ -27,6 +27,7 @@ func _change_state(_state: State) -> void:
 			animation_player.play("hurt")
 		State.DEAD:
 			hide()
+	state = _state
 
 func _get_input() -> void:
 	var is_right_pressed := Input.is_action_pressed("right")
@@ -47,13 +48,12 @@ func _get_input() -> void:
 	
 	if state in [State.IDLE, State.RUN] and !is_on_floor():
 		_change_state(State.JUMP)
-	elif velocity.x != 0:
+	elif state == State.IDLE and velocity.x != 0:
 		_change_state(State.RUN)
-	elif velocity.x == 0:
+	elif state == State.RUN and velocity.x == 0:
 		_change_state(State.IDLE)	
-
+	
 func _physics_process(_delta: float) -> void:
 	_get_input()
 	velocity.y += gravity * _delta
 	move_and_slide()
-	
