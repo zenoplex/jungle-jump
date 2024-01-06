@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+## Emits when life changes. life_changed(life: int)
+signal life_changed
+
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 
@@ -11,6 +14,12 @@ var run_speed := 150
 var jump_speed := -300
 enum State { IDLE, RUN, JUMP, HURT, DEAD}
 var state := State.IDLE
+var life := 3:
+	set(_value):
+		life = _value
+		life_changed.emit(life)
+		if life <= 0:
+			_change_state(State.DEAD)
 
 func _ready():
 	_change_state(State.IDLE)
@@ -63,4 +72,3 @@ func _physics_process(_delta: float) -> void:
 	
 	if state == State.JUMP and velocity.y > 0:
 		animation_player.play("jump_down")
-	
