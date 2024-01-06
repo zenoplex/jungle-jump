@@ -12,6 +12,7 @@ signal life_changed
 var gravity := 750
 var run_speed := 150
 var jump_speed := -300
+var invincibility_time := 1.0
 enum State { IDLE, RUN, JUMP, HURT, DEAD}
 var state := State.IDLE
 var life := Global.PLAYER_DEFAULT_LIFE:
@@ -34,6 +35,10 @@ func _change_state(_state: State) -> void:
 			animation_player.play("jump_up")
 		State.HURT:
 			animation_player.play("hurt")
+			life -= 1
+			var timer := get_tree().create_timer(invincibility_time)
+			await timer.timeout
+			_change_state(State.IDLE)
 		State.DEAD:
 			hide()
 	state = _state
@@ -79,3 +84,6 @@ func _reset(_position: Vector2) -> void:
 	show()
 	_change_state(State.IDLE)
 	
+func _hurt() -> void:
+	if state != State.HURT:
+		_change_state(State.HURT)
