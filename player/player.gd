@@ -78,7 +78,7 @@ func _physics_process(_delta: float) -> void:
 	if state == State.JUMP and velocity.y > 0:
 		animation_player.play("jump_down")
 
-func _reset(_position: Vector2) -> void:
+func reset(_position: Vector2) -> void:
 	position = _position
 	life = Global.PLAYER_DEFAULT_LIFE
 	show()
