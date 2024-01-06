@@ -1,0 +1,27 @@
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://dn505hopwb4de"]
+
+[ext_resource type="Texture2D" uid="uid://b5ywurlfk25t5" path="res://levels/tileset.png" id="1_ejifl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipjv1"]
+0:0/0 = 0
+0:0/0/custom_data_0 = "cherry"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eo83j"]
+0:0/0 = 0
+0:0/0/custom_data_0 = "gem"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0eoa"]
+0:3/0 = 0
+0:3/0/texture_origin = Vector2i(0, 16)
+0:3/0/custom_data_0 = "door"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fvsx1"]
+texture = ExtResource("1_ejifl")
+
+[resource]
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_ipjv1")
+sources/1 = SubResource("TileSetAtlasSource_eo83j")
+sources/2 = SubResource("TileSetAtlasSource_j0eoa")
+sources/3 = SubResource("TileSetAtlasSource_fvsx1")
