@@ -6,6 +6,7 @@ signal life_changed
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
+@onready var camera: Camera2D = get_node("Camera2D")
 
 # Could be fetched via project settings
 # ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -87,3 +88,7 @@ func reset(_position: Vector2) -> void:
 func _hurt() -> void:
 	if state != State.HURT:
 		_change_state(State.HURT)
+
+func set_camera_limit(left: int, right: int) -> void:
+	camera.limit_left = left
+	camera.limit_right = right
