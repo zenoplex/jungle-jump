@@ -7,7 +7,7 @@ enum ItemType { GEM, CHERRY }
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 
-func _init(_type: ItemType, _position: Vector2) -> void:
+func init(_type: ItemType, _position: Vector2) -> void:
   var texture: Resource
   match _type:
     ItemType.GEM:
