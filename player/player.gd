@@ -7,9 +7,6 @@ signal life_changed
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 
-# TODO: Move to project settings
-const DEFAULT_LIFE := 3
-
 # Could be fetched via project settings
 # ProjectSettings.get_setting("physics/2d/default_gravity")
 var gravity := 750
@@ -17,7 +14,7 @@ var run_speed := 150
 var jump_speed := -300
 enum State { IDLE, RUN, JUMP, HURT, DEAD}
 var state := State.IDLE
-var life := DEFAULT_LIFE:
+var life := Global.PLAYER_DEFAULT_LIFE:
 	set(_value):
 		life = _value
 		life_changed.emit(life)
@@ -78,7 +75,7 @@ func _physics_process(_delta: float) -> void:
 
 func _reset(_position: Vector2) -> void:
 	position = _position
-	life = DEFAULT_LIFE
+	life = Global.PLAYER_DEFAULT_LIFE
 	show()
 	_change_state(State.IDLE)
 	
