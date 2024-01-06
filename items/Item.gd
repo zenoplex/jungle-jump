@@ -1,6 +1,9 @@
 extends Area2D
 class_name Item
 
+## Emits on body entered
+signal picked_up
+
 const gem_texture = "./gem.png"
 const cherry_texture = "./cherry.png"
 enum ItemType { GEM, CHERRY }
@@ -19,3 +22,8 @@ func init(_type: ItemType, _position: Vector2) -> void:
   
   sprite.texture = texture
   position = _position
+
+
+func _on_body_entered(_body: Node2D) -> void:
+  picked_up.emit()
+  queue_free()
