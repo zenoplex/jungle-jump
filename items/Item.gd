@@ -4,8 +4,8 @@ class_name Item
 ## Emits on body entered
 signal picked_up
 
-const GEM_TEXTURE = "./gem.png"
-const CHERRY_TEXTURE = "./cherry.png"
+const GEM_TEXTURE = "res://items/gem.png"
+const CHERRY_TEXTURE = "res://items/cherry.png"
 enum ItemType { GEM, CHERRY }
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
