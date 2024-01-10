@@ -1,12 +1,18 @@
 extends Node2D
 class_name LevelBase
 
+signal score_change(score: int)
+
 @onready var player: Player = get_node("Player")
 @onready var spawn_marker: Marker2D = get_node("SpawnMarker2D")
 @onready var world: TileMap = get_node("World")
 @onready var items: TileMap = get_node("Items")
 
 @export var item_scene: PackedScene
+var score := 0: 
+	set(_value):
+		score = _value
+		score_change.emit(score)
 
 func _ready():
 	player.reset(spawn_marker.position)
@@ -44,4 +50,4 @@ func _add_item(type: Item.ItemType, cell: Vector2i) -> void:
 	item.picked_up.connect(self._on_item_picked_up)
 	
 func _on_item_picked_up() -> void:
-	print("Item picked up")
+	score += 1
