@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwskqhcogui4b"]
+[gd_scene load_steps=8 format=3 uid="uid://bwskqhcogui4b"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_b8o1w"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://levels/tiles_world.tres" id="1_uqs2g"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://uq02qyspfwn8" path="res://items/Item.tscn" id="2_f6wwt"]
 [ext_resource type="PackedScene" uid="uid://bkeaflavki8yg" path="res://player/player.tscn" id="4_niwo7"]
 [ext_resource type="TileSet" uid="uid://blhd0ogpuydej" path="res://levels/tiles_spikes.tres" id="4_xb325"]
+[ext_resource type="Script" path="res://levels/DangerTileMap.gd" id="6_wr5ko"]
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_b8o1w")
@@ -23,9 +24,11 @@ format = 2
 layer_0/name = "world"
 layer_0/tile_data = PackedInt32Array(-196599, 0, 0, -262126, 1, 0, -786411, 1, 0, -655329, 1, 0, -262122, 2, 3)
 
-[node name="Danger" type="TileMap" parent="."]
+[node name="DangerTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("4_xb325")
 format = 2
+layer_0/tile_data = PackedInt32Array(-524265, 589824, 10, -524267, 589824, 10, -131058, 589824, 12, -524257, 458752, 12)
+script = ExtResource("6_wr5ko")
 
 [node name="Player" parent="." instance=ExtResource("4_niwo7")]
 position = Vector2(-27, 0)
