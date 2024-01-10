@@ -18,8 +18,8 @@ metadata/_edit_group_ = true
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0.5)
-motion_mirroring = Vector2(576, 2.08165e-12)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(576, 576)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 scale = Vector2(1.5, 1.5)
@@ -29,7 +29,7 @@ centered = false
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 texture_repeat = 3
 motion_scale = Vector2(0.6, 0.6)
-motion_mirroring = Vector2(880, 2.08165e-12)
+motion_mirroring = Vector2(880, 880)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(0, 200)
