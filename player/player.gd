@@ -19,6 +19,7 @@ var life := Global.PLAYER_DEFAULT_LIFE:
 	set(_value):
 		life = _value
 		life_changed.emit(life)
+		print_debug("Player life: " + str(life))
 		if life <= 0:
 			_change_state(State.DEAD)
 
@@ -77,6 +78,12 @@ func _physics_process(_delta: float) -> void:
 	
 	if state == State.JUMP and velocity.y > 0:
 		animation_player.play("jump_down")
+
+	if state != State.HURT:
+		for i in get_slide_collision_count():
+			var collistion := get_slide_collision(i)
+			if collistion.get_collider() is DangerTileMap:
+				_hurt()
 
 func reset(_position: Vector2) -> void:
 	position = _position
