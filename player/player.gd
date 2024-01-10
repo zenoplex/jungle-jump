@@ -95,6 +95,8 @@ func _hurt() -> void:
 	if state != State.HURT:
 		_change_state(State.HURT)
 
-func set_camera_limit(left: int, right: int) -> void:
+func set_camera_limit(top: int, right: int, bottom: int, left: int) -> void:
+	camera.limit_top = top;
 	camera.limit_left = left
 	camera.limit_right = right
+	camera.limit_bottom = bottom

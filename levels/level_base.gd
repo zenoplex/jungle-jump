@@ -24,10 +24,13 @@ func _set_camera() -> void:
 	var cell_size := world.tile_set.tile_size
 
 	var buffer_size := 5
-	var left := (map_size.position.x - buffer_size) * cell_size.x
+	var top := 0
 	var right := (map_size.end.x + buffer_size) * cell_size.x
+	var left := (map_size.position.x - buffer_size) * cell_size.x
+	var bottom := int(240 * 1.5)
+	
 
-	player.set_camera_limit(left, right)
+	player.set_camera_limit(top, right, bottom, left)
 
 func _spawn_items() -> void:
 	var item_cells := items.get_used_cells(0)
