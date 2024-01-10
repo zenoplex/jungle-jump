@@ -26,7 +26,8 @@ func _ready():
 	_change_state(State.IDLE)
 
 func _change_state(_state: State) -> void:
-	match _state:
+	state = _state
+	match state:
 		State.IDLE:
 			animation_player.play("idle")
 		State.RUN:
@@ -41,7 +42,6 @@ func _change_state(_state: State) -> void:
 			_change_state(State.IDLE)
 		State.DEAD:
 			hide()
-	state = _state
 
 func _get_input() -> void:
 	var is_right_pressed := Input.is_action_pressed("right")
