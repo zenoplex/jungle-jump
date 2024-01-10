@@ -5,8 +5,8 @@ signal score_change(_score: int)
 
 @onready var player: Player = get_node("Player")
 @onready var spawn_marker: Marker2D = get_node("SpawnMarker2D")
-@onready var world: TileMap = get_node("World")
-@onready var items: TileMap = get_node("Items")
+@onready var world: TileMap = get_node("WorldTileMap")
+@onready var items: TileMap = get_node("ItemsTileMap")
 
 @export var item_scene: PackedScene
 var score := 0: 

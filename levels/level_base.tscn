@@ -13,12 +13,12 @@ script = ExtResource("1_b8o1w")
 item_scene = ExtResource("2_f6wwt")
 metadata/_edit_group_ = true
 
-[node name="World" type="TileMap" parent="."]
+[node name="WorldTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_uqs2g")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65535, 851968, 1, -1, 1048576, 1, -65531, 1245184, 1, -327675, 327680, 1, -393215, 327680, 1, -589819, 327680, 1, -65527, 65536, 1, -65526, 196608, 1, -65525, 327680, 1, -65523, 65536, 1, -65522, 196608, 1, -65521, 327680, 1, -65519, 65536, 1, -65518, 196608, 1, -65517, 327680, 1, -196587, 65536, 1, -196586, 196608, 1, -196585, 327680, 1, -327655, 65536, 1, -327654, 196608, 1, -327653, 327680, 1, -458723, 65536, 1, -458722, 196608, 1, -458721, 327680, 1, -589803, 65536, 1, -589802, 196608, 1, -589801, 327680, 1, -720871, 65536, 1, -720870, 196608, 1, -720869, 327680, 1)
 
-[node name="Items" type="TileMap" parent="."]
+[node name="ItemsTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_4lf3x")
 format = 2
 layer_0/name = "world"
