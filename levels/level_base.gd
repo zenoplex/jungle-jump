@@ -1,7 +1,7 @@
 extends Node2D
 class_name LevelBase
 
-signal score_change(score: int)
+signal score_change(_score: int)
 
 @onready var player: Player = get_node("Player")
 @onready var spawn_marker: Marker2D = get_node("SpawnMarker2D")

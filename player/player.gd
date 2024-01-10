@@ -1,8 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-## Emits when life changes. life_changed(life: int)
-signal life_changed
+signal life_changed(_life: int)
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
