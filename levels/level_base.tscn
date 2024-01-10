@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwskqhcogui4b"]
+[gd_scene load_steps=10 format=3 uid="uid://bwskqhcogui4b"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_b8o1w"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://levels/tiles_world.tres" id="1_uqs2g"]
 [ext_resource type="TileSet" uid="uid://dn505hopwb4de" path="res://levels/tiles_items.tres" id="2_4lf3x"]
 [ext_resource type="PackedScene" uid="uid://uq02qyspfwn8" path="res://items/Item.tscn" id="2_f6wwt"]
 [ext_resource type="Texture2D" uid="uid://db8opvura5dbb" path="res://levels/back.png" id="3_m3vcx"]
+[ext_resource type="Texture2D" uid="uid://cck4owqlbtkik" path="res://levels/middle.png" id="4_i3evg"]
 [ext_resource type="PackedScene" uid="uid://bkeaflavki8yg" path="res://player/player.tscn" id="4_niwo7"]
 [ext_resource type="TileSet" uid="uid://blhd0ogpuydej" path="res://levels/tiles_spikes.tres" id="4_xb325"]
 [ext_resource type="Script" path="res://levels/DangerTileMap.gd" id="6_wr5ko"]
@@ -25,22 +26,34 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_m3vcx")
 centered = false
 
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+texture_repeat = 3
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(880, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(0, 200)
+texture = ExtResource("4_i3evg")
+centered = false
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 880, 368)
+
 [node name="WorldTileMap" type="TileMap" parent="."]
-position = Vector2(32, 192)
+position = Vector2(2.08165e-12, 2.08165e-12)
 tile_set = ExtResource("1_uqs2g")
 format = 2
-layer_0/tile_data = PackedInt32Array(-1, 1048576, 1, -65531, 1245184, 1, -327675, 327680, 1, -393215, 327680, 1, -589819, 327680, 1, -65527, 65536, 1, -65526, 196608, 1, -65525, 327680, 1, -65523, 65536, 1, -65522, 196608, 1, -65521, 327680, 1, -65519, 65536, 1, -65518, 196608, 1, -65517, 327680, 1, -196587, 65536, 1, -196586, 196608, 1, -196585, 327680, 1, -327655, 65536, 1, -327654, 196608, 1, -327653, 327680, 1, -458723, 65536, 1, -458722, 196608, 1, -458721, 327680, 1, -589803, 65536, 1, -589802, 196608, 1, -589801, 327680, 1, -720871, 65536, 1, -720870, 196608, 1, -720869, 327680, 1, -65535, 851968, 1)
+layer_0/tile_data = PackedInt32Array(1048578, 196608, 1, 1048579, 196608, 1, 1048580, 196608, 1, 1048581, 196608, 1, 1048582, 196608, 1, 1048583, 196608, 1, 1048584, 196608, 1, 1048585, 196608, 1, 1048586, 196608, 1, 1048587, 196608, 1, 1048588, 196608, 1, 1048589, 196608, 1, 1048590, 196608, 1, 1048591, 196608, 1, 1048592, 196608, 1, 1048593, 196608, 1, 1048594, 196608, 1, 1048595, 196608, 1, 1048596, 196608, 1, 1048597, 196608, 1, 1048598, 196608, 1, 1048599, 196608, 1, 1048600, 1245184, 1, 1048619, 196608, 1, 1048620, 196608, 1, 1048621, 196608, 1, 1048622, 196608, 1, 1048623, 196608, 1, 1048624, 196608, 1, 1048625, 196608, 1, 1048626, 196608, 1, 1048627, 196608, 1, 1048628, 196608, 1, 1048629, 196608, 1, 1048630, 196608, 1, 1048631, 196608, 1, 1048632, 196608, 1, 1048633, 196608, 1, 1048634, 196608, 1, 1048635, 196608, 1, 1048636, 196608, 1, 1048637, 196608, 1, 1048638, 196608, 1, 1048639, 196608, 1, 1048640, 196608, 1, 1048641, 196608, 1, 1048642, 196608, 1, 1048643, 196608, 1, 1048644, 196608, 1, 1048645, 196608, 1, 1048577, 65536, 1, 1048646, 327680, 1, 983066, 1245184, 1, 917532, 1245184, 1, 851998, 196608, 1, 851999, 196608, 1, 852000, 196608, 1, 852001, 196608, 1, 852002, 196608, 1, 852003, 196608, 1, 852004, 196608, 1, 917541, 1441792, 1, 983079, 1441792, 1, 1048617, 1441792, 1, 917534, 196608, 3, 917535, 196608, 3, 917536, 196608, 3, 917537, 196608, 3, 917538, 196608, 3, 917539, 196608, 3, 917540, 196608, 3, 983068, 196608, 3, 983069, 196608, 3, 983070, 196608, 3, 983071, 196608, 3, 983072, 196608, 3, 983073, 196608, 3, 983074, 196608, 3, 983075, 196608, 3, 983076, 196608, 3, 983077, 196608, 3, 1048602, 196608, 3, 1048603, 196608, 3, 1048604, 196608, 3, 1048605, 196608, 3, 1048606, 196608, 3, 1048607, 196608, 3, 1048608, 196608, 3, 1048609, 196608, 3, 1048610, 196608, 3, 1048611, 196608, 3, 1048612, 196608, 3, 1048613, 196608, 3, 1048614, 196608, 3, 1048615, 196608, 3, 1048616, 196608, 3, 983078, 196608, 3, 655403, 196608, 1, 655404, 196608, 1, 655405, 196608, 1, 655406, 196608, 1, 655407, 196608, 1, 655408, 196608, 1, 655409, 196608, 1, 655410, 196608, 1, 720936, 196608, 1)
 
 [node name="ItemsTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_4lf3x")
 format = 2
 layer_0/name = "world"
-layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 327687, 0, 0, 65543, 1, 0, 655376, 2, 3, -65508, 1, 0)
+layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 655390, 0, 0, 655392, 0, 0, 655394, 0, 0, 655396, 0, 0, 852011, 1, 0, 852013, 1, 0, 852015, 1, 0, 852017, 1, 0)
 
 [node name="DangerTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("4_xb325")
 format = 2
-layer_0/tile_data = PackedInt32Array(655373, 589824, 12, 262167, 589824, 10, 262169, 589824, 10, 262176, 458752, 12)
+layer_0/tile_data = PackedInt32Array(983054, 589824, 12, 983059, 589824, 12, 983062, 589824, 12, 786463, 589824, 12, 983083, 458752, 12, 983099, 458752, 12)
 script = ExtResource("6_wr5ko")
 
 [node name="Player" parent="." instance=ExtResource("4_niwo7")]
