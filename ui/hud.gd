@@ -13,5 +13,5 @@ func set_life(_life: int) -> void:
 		if child is TextureRect:
 			child.visible = i < _life
 	
-func _set_score(_score: int) -> void:
+func set_score(_score: int) -> void:
 	score_label.text = str(_score)

@@ -58,3 +58,6 @@ func _on_item_picked_up() -> void:
 
 func _on_player_life_changed(_life:int):
 	hud.set_life(_life)
+
+func _on_score_change(_score:int):
+	hud.set_score(_score)
