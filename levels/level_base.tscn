@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwskqhcogui4b"]
+[gd_scene load_steps=12 format=3 uid="uid://bwskqhcogui4b"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_b8o1w"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://levels/tiles_world.tres" id="1_uqs2g"]
@@ -9,11 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://bkeaflavki8yg" path="res://player/player.tscn" id="4_niwo7"]
 [ext_resource type="TileSet" uid="uid://blhd0ogpuydej" path="res://levels/tiles_spikes.tres" id="4_xb325"]
 [ext_resource type="Script" path="res://levels/DangerTileMap.gd" id="6_wr5ko"]
+[ext_resource type="PackedScene" uid="uid://dnu0rceo3bl7m" path="res://enemies/enemy.tscn" id="10_voapa"]
+[ext_resource type="PackedScene" uid="uid://duxmqotf4gdnl" path="res://ui/hud.tscn" id="11_x1a8f"]
 
 [node name="LevelBase" type="Node2D"]
+position = Vector2(12, 0)
 script = ExtResource("1_b8o1w")
 item_scene = ExtResource("2_f6wwt")
-metadata/_edit_group_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -63,3 +65,12 @@ position = Vector2(-27, 0)
 
 [node name="SpawnMarker2D" type="Marker2D" parent="."]
 position = Vector2(16, -56)
+
+[node name="Enemy" parent="." instance=ExtResource("10_voapa")]
+position = Vector2(30, 299)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("11_x1a8f")]
+
+[connection signal="life_changed" from="Player" to="." method="_on_player_life_changed"]

@@ -4,7 +4,7 @@ class_name HUD
 @onready var score_label: Label = get_node("HBoxContainer/ScoreLabel")
 @onready var life_counter: HBoxContainer = get_node("HBoxContainer/LifeCounter")
 
-func _set_life(_life: int) -> void:
+func set_life(_life: int) -> void:
 	# NOTE: Max displayable life is 5 due to UI restriction.
 	# Maybe append depending on setting first.
 	var children := life_counter.get_children()

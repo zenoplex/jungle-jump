@@ -7,6 +7,7 @@ signal score_change(_score: int)
 @onready var spawn_marker: Marker2D = get_node("SpawnMarker2D")
 @onready var world: TileMap = get_node("WorldTileMap")
 @onready var items: TileMap = get_node("ItemsTileMap")
+@onready var hud: HUD = get_node("CanvasLayer/HUD")
 
 @export var item_scene: PackedScene
 var score := 0: 
@@ -54,3 +55,6 @@ func _add_item(type: Item.ItemType, cell: Vector2i) -> void:
 	
 func _on_item_picked_up() -> void:
 	score += 1
+
+func _on_player_life_changed(_life:int):
+	hud.set_life(_life)
