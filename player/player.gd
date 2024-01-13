@@ -83,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 		for i in get_slide_collision_count():
 			var collistion := get_slide_collision(i)
 			if collistion.get_collider() is DangerTileMap:
-				_hurt()
+				hurt()
 
 func reset(_position: Vector2) -> void:
 	position = _position
@@ -91,7 +91,7 @@ func reset(_position: Vector2) -> void:
 	show()
 	_change_state(State.IDLE)
 	
-func _hurt() -> void:
+func hurt() -> void:
 	if state != State.HURT:
 		_change_state(State.HURT)
 
