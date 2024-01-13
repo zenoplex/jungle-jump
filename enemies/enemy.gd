@@ -9,7 +9,7 @@ const GRAVITY := 900
 var leftRight := 1
 
 func _physics_process(_delta: float) -> void:
-	velocity.x += leftRight * SPEED * _delta
+	velocity.x = leftRight * SPEED
 	velocity.y += GRAVITY * _delta
 	sprite.flip_h = velocity.x > 0
 	move_and_slide()
@@ -20,3 +20,13 @@ func _physics_process(_delta: float) -> void:
 
 		if collider is Player:
 			collider.hurt()
+		
+		var normal := collistion.get_normal().x
+		if normal != 0:
+			leftRight = sign(normal)
+			velocity.y = -100
+		
+		# Out of bounds
+		if position.y > 10000:
+			queue_free()
+
