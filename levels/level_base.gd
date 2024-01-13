@@ -16,6 +16,7 @@ var score := 0:
 		score_change.emit(score)
 
 func _ready():
+	score = 0
 	player.reset(spawn_marker.position)
 	_set_camera()
 	_spawn_items()
