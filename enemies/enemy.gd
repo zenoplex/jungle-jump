@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Enemy
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
+@onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
+@onready var collistion_shape: CollisionShape2D = get_node("CollisionShape2D")
 
 const SPEED := 50
 const GRAVITY := 900
@@ -30,3 +32,7 @@ func _physics_process(_delta: float) -> void:
 		if position.y > 10000:
 			queue_free()
 
+func _take_damage() -> void:
+	animation_player.play("death")
+	collistion_shape.set_deferred("disabled", true)
+	set_physics_process(false)
