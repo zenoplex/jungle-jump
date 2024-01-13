@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal life_changed(_life: int)
+signal dead()
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
@@ -43,6 +44,7 @@ func _change_state(_state: State) -> void:
 			_change_state(State.IDLE)
 		State.DEAD:
 			hide()
+			dead.emit()
 
 func _get_input() -> void:
 	var is_right_pressed := Input.is_action_pressed("right")
