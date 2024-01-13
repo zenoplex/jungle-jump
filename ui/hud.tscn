@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://duxmqotf4gdnl"]
+
+[ext_resource type="FontFile" uid="uid://cngjx0wp8u154" path="res://ui/Kenney Thick.ttf" id="1_ltxc8"]
+[ext_resource type="Texture2D" uid="uid://croerfdfleaa7" path="res://ui/heart.png" id="2_0cmvi"]
+
+[node name="HUD" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("1_ltxc8")
+theme_override_font_sizes/font_size = 48
+text = "100"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="L1" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_0cmvi")
+stretch_mode = 5
+
+[node name="L2" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_0cmvi")
+stretch_mode = 5
+
+[node name="L3" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_0cmvi")
+stretch_mode = 5
+
+[node name="L4" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_0cmvi")
+stretch_mode = 5
+
+[node name="L5" type="TextureRect" parent="HBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_0cmvi")
+stretch_mode = 5
