@@ -32,7 +32,10 @@ func _physics_process(_delta: float) -> void:
 		if position.y > 10000:
 			queue_free()
 
-func _take_damage() -> void:
+func take_damage() -> void:
 	animation_player.play("death")
 	collistion_shape.set_deferred("disabled", true)
 	set_physics_process(false)
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	queue_free()
