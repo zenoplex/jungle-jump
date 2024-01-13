@@ -15,7 +15,7 @@ var score := 0:
 		score = _value
 		score_change.emit(score)
 
-func _ready():
+func _ready() -> void:
 	score = 0
 	player.reset(spawn_marker.position)
 	_set_camera()
@@ -48,17 +48,17 @@ func _spawn_items() -> void:
 			_:
 				pass
 
-func _add_item(type: Item.ItemType, cell: Vector2i) -> void:
+func _add_item(_type: Item.ItemType, _cell: Vector2i) -> void:
 	var item := item_scene.instantiate() as Item
 	add_child(item)
-	item.init(type, items.map_to_local(cell))
+	item.init(_type, items.map_to_local(_cell))
 	item.picked_up.connect(self._on_item_picked_up)
 	
 func _on_item_picked_up() -> void:
 	score += 1
 
-func _on_player_life_changed(_life:int):
+func _on_player_life_changed(_life: int) -> void:
 	hud.set_life(_life)
 
-func _on_score_change(_score:int):
+func _on_score_change(_score: int) -> void:
 	hud.set_score(_score)
