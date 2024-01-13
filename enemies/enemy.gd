@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 		
 		var normal := collistion.get_normal().x
 		if normal != 0:
-			leftRight = sign(normal)
+			leftRight = signi(int(normal))
 			velocity.y = -100
 		
 		# Out of bounds
