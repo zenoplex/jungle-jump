@@ -17,6 +17,7 @@ var score := 0:
 
 func _ready() -> void:
 	score = 0
+	items.visible = false
 	player.reset(spawn_marker.position)
 	_set_camera()
 	_spawn_items()
