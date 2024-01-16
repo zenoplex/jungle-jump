@@ -21,8 +21,6 @@ var life := Global.PLAYER_DEFAULT_LIFE:
 		life = _value
 		life_changed.emit(life)
 		print_debug("Player life: " + str(life))
-		if life <= 0:
-			_change_state(State.DEAD)
 
 func _ready():
 	_change_state(State.IDLE)
@@ -42,6 +40,8 @@ func _change_state(_state: State) -> void:
 			var timer := get_tree().create_timer(invincibility_time)
 			await timer.timeout
 			_change_state(State.IDLE)
+			if life <= 0:
+				_change_state(State.DEAD)
 		State.DEAD:
 			hide()
 			dead.emit()
