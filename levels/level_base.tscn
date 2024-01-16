@@ -51,7 +51,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 tile_set = ExtResource("2_4lf3x")
 format = 2
 layer_0/name = "world"
-layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 786462, 0, 0, 786464, 0, 0, 786466, 0, 0, 786468, 0, 0, 983083, 1, 0, 983085, 1, 0, 983087, 1, 0, 983089, 1, 0)
+layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 786462, 0, 0, 786464, 0, 0, 786466, 0, 0, 786468, 0, 0, 983083, 1, 0, 983085, 1, 0, 983087, 1, 0, 983089, 1, 0, 786460, 0, 0)
 
 [node name="DangerTileMap" type="TileMap" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -74,4 +74,5 @@ position = Vector2(30, 299)
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("11_x1a8f")]
 
 [connection signal="score_change" from="." to="." method="_on_score_change"]
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="life_changed" from="Player" to="." method="_on_player_life_changed"]

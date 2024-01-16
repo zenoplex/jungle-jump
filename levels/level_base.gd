@@ -63,3 +63,6 @@ func _on_player_life_changed(_life: int) -> void:
 
 func _on_score_change(_score: int) -> void:
 	hud.set_score(_score)
+
+func _on_player_dead() -> void:
+	GameState.restart()
