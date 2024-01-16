@@ -1,7 +1,7 @@
 extends Node
 
 var num_levels := 2
-var current_level := 1
+var current_level := 0
 var game_scene := "res://main.tscn"
 var title_scene := "res://ui/title.tscn"
 
