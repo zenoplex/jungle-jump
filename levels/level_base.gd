@@ -68,8 +68,8 @@ func _add_door(_cell: Vector2i) -> void:
 func _on_item_picked_up() -> void:
 	score += 1
 
-func _on_door_body_entered(body: Node2D) -> void:
-	print('door entered', body)
+func _on_door_body_entered(_body: Node2D) -> void:
+	GameState.next_level()	
 
 func _on_player_life_changed(_life: int) -> void:
 	hud.set_life(_life)
