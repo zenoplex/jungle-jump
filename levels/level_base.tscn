@@ -53,7 +53,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 tile_set = ExtResource("2_4lf3x")
 format = 2
 layer_0/name = "world"
-layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 786462, 0, 0, 786464, 0, 0, 786466, 0, 0, 786468, 0, 0, 983083, 1, 0, 983085, 1, 0, 983087, 1, 0, 983089, 1, 0, 786460, 0, 0, 786478, 2, 3, 1179651, 2, 3)
+layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 786462, 0, 0, 786464, 0, 0, 786466, 0, 0, 786468, 0, 0, 983083, 1, 0, 983085, 1, 0, 983087, 1, 0, 983089, 1, 0, 786460, 0, 0, 786478, 2, 3)
 
 [node name="DangerTileMap" type="TileMap" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -66,7 +66,7 @@ script = ExtResource("6_wr5ko")
 position = Vector2(-27, 0)
 
 [node name="SpawnMarker2D" type="Marker2D" parent="."]
-position = Vector2(16, -56)
+position = Vector2(56, 40)
 
 [node name="Enemy" parent="." instance=ExtResource("10_voapa")]
 position = Vector2(30, 299)
