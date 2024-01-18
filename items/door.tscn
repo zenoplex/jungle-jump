@@ -6,13 +6,14 @@
 size = Vector2(20, 32)
 
 [node name="Door" type="Area2D"]
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
 texture = ExtResource("1_lxcdi")
+offset = Vector2(2.08165e-12, -8)
 region_enabled = true
 region_rect = Rect2(16, 64, 20, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_dnfyv")
