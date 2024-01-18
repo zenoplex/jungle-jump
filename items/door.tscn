@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1b7ehase0wln"]
+[gd_scene load_steps=4 format=3 uid="uid://c1b7ehase0wln"]
 
+[ext_resource type="Script" path="res://items/door.gd" id="1_380tu"]
 [ext_resource type="Texture2D" uid="uid://bal1s63k4g23a" path="res://levels/props.png" id="1_lxcdi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnfyv"]
@@ -7,6 +8,7 @@ size = Vector2(20, 32)
 
 [node name="Door" type="Area2D"]
 collision_mask = 2
+script = ExtResource("1_380tu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lxcdi")
