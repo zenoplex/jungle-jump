@@ -60,7 +60,7 @@ func _add_item(_type: Item.ItemType, _cell: Vector2i) -> void:
 	item.picked_up.connect(self._on_item_picked_up)
 
 func _add_door(_cell: Vector2i) -> void:
-	var door := door_scene.instantiate()
+	var door := door_scene.instantiate() as Door
 	add_child(door)
 	door.position = items.map_to_local(_cell)
 	door.body_entered.connect(_on_door_body_entered)
