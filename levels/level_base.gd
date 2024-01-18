@@ -10,6 +10,8 @@ signal score_change(_score: int)
 @onready var hud: HUD = get_node("CanvasLayer/HUD")
 
 @export var item_scene: PackedScene
+@export var door_scene: PackedScene
+
 var score := 0: 
 	set(_value):
 		score = _value
@@ -46,6 +48,8 @@ func _spawn_items() -> void:
 				_add_item(Item.ItemType.GEM, cell)
 			"cherry":
 				_add_item(Item.ItemType.CHERRY, cell)
+			"door":
+				_add_door(cell)
 			_:
 				pass
 
@@ -54,9 +58,18 @@ func _add_item(_type: Item.ItemType, _cell: Vector2i) -> void:
 	add_child(item)
 	item.init(_type, items.map_to_local(_cell))
 	item.picked_up.connect(self._on_item_picked_up)
-	
+
+func _add_door(_cell: Vector2i) -> void:
+	var door := door_scene.instantiate()
+	add_child(door)
+	door.position = items.map_to_local(_cell)
+	door.body_entered.connect(_on_door_body_entered)
+
 func _on_item_picked_up() -> void:
 	score += 1
+
+func _on_door_body_entered(body: Node2D) -> void:
+	print('door entered', body)
 
 func _on_player_life_changed(_life: int) -> void:
 	hud.set_life(_life)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwskqhcogui4b"]
+[gd_scene load_steps=13 format=3 uid="uid://bwskqhcogui4b"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_b8o1w"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://levels/tiles_world.tres" id="1_uqs2g"]
 [ext_resource type="TileSet" uid="uid://dn505hopwb4de" path="res://levels/tiles_items.tres" id="2_4lf3x"]
 [ext_resource type="PackedScene" uid="uid://uq02qyspfwn8" path="res://items/Item.tscn" id="2_f6wwt"]
+[ext_resource type="PackedScene" uid="uid://c1b7ehase0wln" path="res://items/door.tscn" id="3_cjqc0"]
 [ext_resource type="Texture2D" uid="uid://db8opvura5dbb" path="res://assets/back.png" id="3_m3vcx"]
 [ext_resource type="Texture2D" uid="uid://cck4owqlbtkik" path="res://assets/middle.png" id="4_i3evg"]
 [ext_resource type="PackedScene" uid="uid://bkeaflavki8yg" path="res://player/player.tscn" id="4_niwo7"]
@@ -16,6 +17,7 @@
 position = Vector2(12, 0)
 script = ExtResource("1_b8o1w")
 item_scene = ExtResource("2_f6wwt")
+door_scene = ExtResource("3_cjqc0")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -51,7 +53,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 tile_set = ExtResource("2_4lf3x")
 format = 2
 layer_0/name = "world"
-layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 786462, 0, 0, 786464, 0, 0, 786466, 0, 0, 786468, 0, 0, 983083, 1, 0, 983085, 1, 0, 983087, 1, 0, 983089, 1, 0, 786460, 0, 0)
+layer_0/tile_data = PackedInt32Array(-786411, 1, 0, 786462, 0, 0, 786464, 0, 0, 786466, 0, 0, 786468, 0, 0, 983083, 1, 0, 983085, 1, 0, 983087, 1, 0, 983089, 1, 0, 786460, 0, 0, 786478, 2, 3, 1179651, 2, 3)
 
 [node name="DangerTileMap" type="TileMap" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
