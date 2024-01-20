@@ -12,10 +12,10 @@ signal dead()
 
 # Could be fetched via project settings
 # ProjectSettings.get_setting("physics/2d/default_gravity")
-var gravity := 750
-var run_speed := 150
-var jump_speed := -300
-var invincibility_time := 1.0
+const GRAVITY := 750
+const RUN_SPEED := 150
+const JUMP_SPEED := -300
+const INVINCIBILITY_TIME := 1.0
 const HURT_PUSHBACK := Vector2(-100, -200)
 enum State { IDLE, RUN, JUMP, HURT, DEAD}
 var state := State.IDLE
@@ -44,7 +44,7 @@ func _change_state(_state: State) -> void:
 			velocity.x = HURT_PUSHBACK.x * sign(velocity.x)
 			print_debug(velocity.x)
 			life -= 1
-			var timer := get_tree().create_timer(invincibility_time)
+			var timer := get_tree().create_timer(INVINCIBILITY_TIME)
 			await timer.timeout
 			_change_state(State.IDLE)
 			if life <= 0:
@@ -60,15 +60,15 @@ func _get_input() -> void:
 
 	velocity.x = 0
 	if is_right_pressed:
-		velocity.x += run_speed
+		velocity.x += RUN_SPEED
 		sprite.flip_h = false
 	if is_left_pressed:
-		velocity.x -= run_speed
+		velocity.x -= RUN_SPEED
 		sprite.flip_h = true
 	# Only allow jump if player is touching the floor
 	if is_jump_pressed and is_on_floor():
 		_change_state(State.JUMP)
-		velocity.y = jump_speed
+		velocity.y = JUMP_SPEED
 		jump_sound.play()
 	
 	if state in [State.IDLE, State.RUN] and !is_on_floor():
@@ -80,7 +80,7 @@ func _get_input() -> void:
 	
 func _physics_process(_delta: float) -> void:
 	_get_input()
-	velocity.y += gravity * _delta
+	velocity.y += GRAVITY * _delta
 	move_and_slide()
 
 	if state == State.JUMP and is_on_floor():
