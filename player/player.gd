@@ -17,6 +17,9 @@ const RUN_SPEED := 150
 const JUMP_SPEED := -300
 const INVINCIBILITY_TIME := 1.0
 const HURT_PUSHBACK := Vector2(-100, -200)
+const MAX_JUMPS := 2
+const DOUBLE_JUMP_FACTOR := 0.8
+var jump_count := 0
 enum State { IDLE, RUN, JUMP, HURT, DEAD}
 var state := State.IDLE
 var life := Global.PLAYER_DEFAULT_LIFE:
@@ -37,6 +40,7 @@ func _change_state(_state: State) -> void:
 			animation_player.play("run")
 		State.JUMP:
 			animation_player.play("jump_up")
+			jump_count = 1
 		State.HURT:
 			animation_player.play("hurt")
 			velocity.y = HURT_PUSHBACK.y
@@ -65,6 +69,10 @@ func _get_input() -> void:
 	if is_left_pressed:
 		velocity.x -= RUN_SPEED
 		sprite.flip_h = true
+	if is_jump_pressed and state == State.JUMP and jump_count < MAX_JUMPS:
+		velocity.y = JUMP_SPEED * DOUBLE_JUMP_FACTOR
+		jump_count += 1
+		jump_sound.play()
 	# Only allow jump if player is touching the floor
 	if is_jump_pressed and is_on_floor():
 		_change_state(State.JUMP)
@@ -85,6 +93,7 @@ func _physics_process(_delta: float) -> void:
 
 	if state == State.JUMP and is_on_floor():
 		_change_state(State.IDLE)
+		jump_count = 0
 	
 	if state == State.JUMP and velocity.y > 0:
 		animation_player.play("jump_down")
