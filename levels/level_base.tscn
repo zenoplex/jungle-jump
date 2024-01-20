@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwskqhcogui4b"]
+[gd_scene load_steps=14 format=3 uid="uid://bwskqhcogui4b"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_b8o1w"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://levels/tiles_world.tres" id="1_uqs2g"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://levels/DangerTileMap.gd" id="6_wr5ko"]
 [ext_resource type="PackedScene" uid="uid://dnu0rceo3bl7m" path="res://enemies/enemy.tscn" id="10_voapa"]
 [ext_resource type="PackedScene" uid="uid://duxmqotf4gdnl" path="res://ui/hud.tscn" id="11_x1a8f"]
+[ext_resource type="AudioStream" uid="uid://bn3nhaybuur6x" path="res://levels/Grasslands Theme.ogg" id="13_r57cp"]
 
 [node name="LevelBase" type="Node2D"]
 position = Vector2(12, 0)
@@ -74,6 +75,10 @@ position = Vector2(30, 299)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("11_x1a8f")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_r57cp")
+autoplay = true
 
 [connection signal="score_change" from="." to="." method="_on_score_change"]
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
