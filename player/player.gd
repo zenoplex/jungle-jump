@@ -16,6 +16,7 @@ var gravity := 750
 var run_speed := 150
 var jump_speed := -300
 var invincibility_time := 1.0
+const HURT_PUSHBACK := Vector2(-100, -200)
 enum State { IDLE, RUN, JUMP, HURT, DEAD}
 var state := State.IDLE
 var life := Global.PLAYER_DEFAULT_LIFE:
@@ -38,6 +39,10 @@ func _change_state(_state: State) -> void:
 			animation_player.play("jump_up")
 		State.HURT:
 			animation_player.play("hurt")
+			velocity.y = HURT_PUSHBACK.y
+			# TODO: This may not be working as velocity.x is reset to 0 in _get_input
+			velocity.x = HURT_PUSHBACK.x * sign(velocity.x)
+			print_debug(velocity.x)
 			life -= 1
 			var timer := get_tree().create_timer(invincibility_time)
 			await timer.timeout
