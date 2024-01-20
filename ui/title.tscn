@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbmu1xmuwsimi"]
+[gd_scene load_steps=9 format=3 uid="uid://bbmu1xmuwsimi"]
 
 [ext_resource type="Texture2D" uid="uid://db8opvura5dbb" path="res://assets/back.png" id="1_c8caa"]
 [ext_resource type="Script" path="res://ui/title.gd" id="1_os0pn"]
 [ext_resource type="Texture2D" uid="uid://cck4owqlbtkik" path="res://assets/middle.png" id="2_0qygu"]
 [ext_resource type="FontFile" uid="uid://cngjx0wp8u154" path="res://ui/Kenney Thick.ttf" id="3_ygp7n"]
+[ext_resource type="AudioStream" uid="uid://c40si2ua1x70r" path="res://ui/Intro Theme.ogg" id="5_uruw1"]
 
 [sub_resource type="Animation" id="Animation_ur6bc"]
 length = 0.001
@@ -189,3 +190,7 @@ libraries = {
 "": SubResource("AnimationLibrary_5g3o1")
 }
 autoplay = "intro"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_uruw1")
+autoplay = true
