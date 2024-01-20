@@ -8,6 +8,7 @@ signal score_change(_score: int)
 @onready var world: TileMap = get_node("WorldTileMap")
 @onready var items: TileMap = get_node("ItemsTileMap")
 @onready var hud: HUD = get_node("CanvasLayer/HUD")
+@onready var pickup_sound: AudioStreamPlayer = get_node("PickupSound")
 
 @export var item_scene: PackedScene
 @export var door_scene: PackedScene
@@ -68,6 +69,7 @@ func _add_door(_cell: Vector2i) -> void:
 
 func _on_item_picked_up() -> void:
 	score += 1
+	pickup_sound.play()
 
 func _on_door_body_entered(_body: Node2D) -> void:
 	GameState.next_level()	
