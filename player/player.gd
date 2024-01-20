@@ -7,6 +7,8 @@ signal dead()
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 @onready var camera: Camera2D = get_node("Camera2D")
+@onready var jump_sound: AudioStreamPlayer = get_node("JumpSound")
+@onready var hurt_sound: AudioStreamPlayer = get_node("HurtSound")
 
 # Could be fetched via project settings
 # ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -62,6 +64,7 @@ func _get_input() -> void:
 	if is_jump_pressed and is_on_floor():
 		_change_state(State.JUMP)
 		velocity.y = jump_speed
+		jump_sound.play()
 	
 	if state in [State.IDLE, State.RUN] and !is_on_floor():
 		_change_state(State.JUMP)
@@ -102,6 +105,7 @@ func reset(_position: Vector2) -> void:
 func hurt() -> void:
 	if state != State.HURT:
 		_change_state(State.HURT)
+		hurt_sound.play()
 
 func set_camera_limit(top: int, right: int, bottom: int, left: int) -> void:
 	camera.limit_top = top;

@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkeaflavki8yg"]
+[gd_scene load_steps=13 format=3 uid="uid://bkeaflavki8yg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3jcjm"]
 [ext_resource type="Texture2D" uid="uid://bf3lckwlnpb1l" path="res://player/player_sheet.png" id="1_ywgen"]
+[ext_resource type="AudioStream" uid="uid://d2xp2k5x551y1" path="res://player/jump4.ogg" id="3_ra2k8"]
+[ext_resource type="AudioStream" uid="uid://bmtkmqpqeg5r8" path="res://player/hurt1.ogg" id="4_3crh1"]
 
 [sub_resource type="Animation" id="Animation_nof2w"]
 length = 0.001
@@ -138,3 +140,9 @@ shape = SubResource("RectangleShape2D_iote6")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -10)
 zoom = Vector2(2.5, 2.5)
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ra2k8")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3crh1")
