@@ -4,6 +4,7 @@ class_name Enemy
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 @onready var collistion_shape: CollisionShape2D = get_node("CollisionShape2D")
+@onready var damage_sound: AudioStreamPlayer = get_node("DamageSound")
 
 const SPEED := 50
 const GRAVITY := 900
@@ -34,6 +35,7 @@ func _physics_process(_delta: float) -> void:
 
 func take_damage() -> void:
 	animation_player.play("death")
+	damage_sound.play()
 	collistion_shape.set_deferred("disabled", true)
 	set_physics_process(false)
 

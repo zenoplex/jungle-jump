@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnu0rceo3bl7m"]
+[gd_scene load_steps=9 format=3 uid="uid://dnu0rceo3bl7m"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_b6yey"]
 [ext_resource type="Texture2D" uid="uid://bdxmrej4b7od0" path="res://enemies/opossum.png" id="1_brb7d"]
 [ext_resource type="Texture2D" uid="uid://rfddwctrnjno" path="res://enemies/death.png" id="3_3pov2"]
+[ext_resource type="AudioStream" uid="uid://c6p5hhgt6rxqi" path="res://enemies/enemy_hit.ogg" id="4_ph06o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24npj"]
 size = Vector2(24, 18)
@@ -90,5 +91,10 @@ libraries = {
 "": SubResource("AnimationLibrary_3l8tb")
 }
 autoplay = "walk"
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ph06o")
+volume_db = -10.0
+pitch_scale = 2.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
