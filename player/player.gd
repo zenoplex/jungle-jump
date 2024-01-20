@@ -9,6 +9,7 @@ signal dead()
 @onready var camera: Camera2D = get_node("Camera2D")
 @onready var jump_sound: AudioStreamPlayer = get_node("JumpSound")
 @onready var hurt_sound: AudioStreamPlayer = get_node("HurtSound")
+@onready var dust_particle: GPUParticles2D = get_node("DustParticle")
 
 # Could be fetched via project settings
 # ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -78,6 +79,7 @@ func _get_input() -> void:
 		_change_state(State.JUMP)
 		velocity.y = JUMP_SPEED
 		jump_sound.play()
+		dust_particle.emitting = true
 	
 	if state in [State.IDLE, State.RUN] and !is_on_floor():
 		_change_state(State.JUMP)

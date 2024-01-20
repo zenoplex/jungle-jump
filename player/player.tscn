@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkeaflavki8yg"]
+[gd_scene load_steps=16 format=3 uid="uid://bkeaflavki8yg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_3jcjm"]
 [ext_resource type="Texture2D" uid="uid://bf3lckwlnpb1l" path="res://player/player_sheet.png" id="1_ywgen"]
@@ -116,6 +116,19 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iote6"]
 size = Vector2(10, 20)
 
+[sub_resource type="Gradient" id="Gradient_wxlsy"]
+colors = PackedColorArray(0.666667, 0.435294, 0.14902, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xcf3g"]
+gradient = SubResource("Gradient_wxlsy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8v4t2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 6, 1)
+initial_velocity_max = 10.0
+color_ramp = SubResource("GradientTexture1D_xcf3g")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 13
@@ -146,3 +159,14 @@ stream = ExtResource("3_ra2k8")
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3crh1")
+
+[node name="DustParticle" type="GPUParticles2D" parent="."]
+position = Vector2(-2, 2.08165e-12)
+rotation = -1.5708
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_8v4t2")
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
