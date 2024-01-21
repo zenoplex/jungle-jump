@@ -16,12 +16,14 @@ signal dead()
 const GRAVITY := 750
 const RUN_SPEED := 150
 const JUMP_SPEED := -300
+const CLIMB_SPEED := 50
 const INVINCIBILITY_TIME := 1.0
 const HURT_PUSHBACK := Vector2(-100, -200)
 const MAX_JUMPS := 2
 const DOUBLE_JUMP_FACTOR := 0.8
 var jump_count := 0
-enum State { IDLE, RUN, JUMP, HURT, DEAD}
+var is_on_ladder := false
+enum State { IDLE, RUN, JUMP, CLIMB, HURT, DEAD }
 var state := State.IDLE
 var life := Global.PLAYER_DEFAULT_LIFE:
 	set(_value):
@@ -42,6 +44,8 @@ func _change_state(_state: State) -> void:
 		State.JUMP:
 			animation_player.play("jump_up")
 			jump_count = 1
+		State.CLIMB:
+			animation_player.play("climb")
 		State.HURT:
 			animation_player.play("hurt")
 			velocity.y = HURT_PUSHBACK.y
@@ -59,11 +63,28 @@ func _change_state(_state: State) -> void:
 			dead.emit()
 
 func _get_input() -> void:
+	var is_up_pressed := Input.is_action_pressed("up")
+	var is_down_pressed := Input.is_action_pressed("down")
 	var is_right_pressed := Input.is_action_pressed("right")
 	var is_left_pressed := Input.is_action_pressed("left")
 	var is_jump_pressed := Input.is_action_just_pressed("jump")
 
 	velocity.x = 0
+
+	if is_up_pressed and state != State.CLIMB and is_on_ladder:
+		_change_state(State.CLIMB)
+	if state == State.CLIMB:
+		if is_up_pressed:
+			velocity.y = -CLIMB_SPEED
+			animation_player.play("climb")
+		elif is_down_pressed:
+			velocity.y = CLIMB_SPEED
+			animation_player.play("climb")
+		else:
+			velocity.y = 0
+			animation_player.stop()
+	if state == State.CLIMB and !is_on_ladder:
+		_change_state(State.IDLE)
 	if is_right_pressed:
 		velocity.x += RUN_SPEED
 		sprite.flip_h = false
@@ -90,7 +111,10 @@ func _get_input() -> void:
 	
 func _physics_process(_delta: float) -> void:
 	_get_input()
-	velocity.y += GRAVITY * _delta
+
+	if state != State.CLIMB:
+		velocity.y += GRAVITY * _delta
+	
 	move_and_slide()
 
 	if state == State.JUMP and is_on_floor():
