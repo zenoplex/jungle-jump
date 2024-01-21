@@ -9,6 +9,7 @@ signal score_change(_score: int)
 @onready var items: TileMap = get_node("ItemsTileMap")
 @onready var hud: HUD = get_node("CanvasLayer/HUD")
 @onready var pickup_sound: AudioStreamPlayer = get_node("PickupSound")
+@onready var ladders: Area2D = get_node("Ladders")
 
 @export var item_scene: PackedScene
 @export var door_scene: PackedScene
@@ -24,6 +25,7 @@ func _ready() -> void:
 	player.reset(spawn_marker.position)
 	_set_camera()
 	_spawn_items()
+	_spawn_interactables()
 
 func _set_camera() -> void:
 	var map_size := world.get_used_rect()
@@ -67,6 +69,26 @@ func _add_door(_cell: Vector2i) -> void:
 	door.position = items.map_to_local(_cell)
 	door.body_entered.connect(_on_door_body_entered)
 
+func _spawn_interactables() -> void:
+	var world_cells := world.get_used_cells(0)
+	for cell in world_cells:
+		var data := world.get_cell_tile_data(0, cell)
+		var type: Variant = data.get_custom_data("special")
+
+		match type:
+			"ladder":
+				_add_ladders(world, cell)
+			_:
+				pass
+
+func _add_ladders(_container: TileMap, _cell: Vector2i) -> void:
+	var collision := CollisionShape2D.new()
+	ladders.add_child(collision)
+	collision.position = _container.map_to_local(_cell)
+	var rectangle := RectangleShape2D.new()
+	rectangle.size = Vector2(8, 16)
+	collision.shape = rectangle
+	
 func _on_item_picked_up() -> void:
 	score += 1
 	pickup_sound.play()
