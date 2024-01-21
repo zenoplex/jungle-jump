@@ -82,3 +82,11 @@ func _on_score_change(_score: int) -> void:
 
 func _on_player_dead() -> void:
 	GameState.restart()
+
+func _on_ladders_body_entered(body: Node2D) -> void:
+	if body is Player:
+		player.is_on_ladder = true
+
+func _on_ladders_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player.is_on_ladder = false
