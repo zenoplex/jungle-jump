@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwskqhcogui4b"]
+[gd_scene load_steps=16 format=3 uid="uid://bwskqhcogui4b"]
 
 [ext_resource type="Script" path="res://levels/level_base.gd" id="1_b8o1w"]
 [ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://levels/tiles_world.tres" id="1_uqs2g"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://duxmqotf4gdnl" path="res://ui/hud.tscn" id="11_x1a8f"]
 [ext_resource type="AudioStream" uid="uid://bn3nhaybuur6x" path="res://levels/Grasslands Theme.ogg" id="13_r57cp"]
 [ext_resource type="AudioStream" uid="uid://q7euyan567s3" path="res://levels/pickup2.ogg" id="14_winlp"]
+[ext_resource type="PackedScene" uid="uid://bmctn50dwmhvb" path="res://levels/moving_platform.tscn" id="15_ejl8m"]
 
 [node name="LevelBase" type="Node2D"]
 position = Vector2(12, 0)
@@ -87,6 +88,15 @@ stream = ExtResource("14_winlp")
 [node name="Ladders" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
+
+[node name="MovingPlatform" parent="." instance=ExtResource("15_ejl8m")]
+position = Vector2(268, 96)
+offset = Vector2(320, 50)
+
+[node name="MovingPlatform2" parent="." instance=ExtResource("15_ejl8m")]
+position = Vector2(668, 136)
+offset = Vector2(-200, 100)
+duration = 6.0
 
 [connection signal="score_change" from="." to="." method="_on_score_change"]
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
