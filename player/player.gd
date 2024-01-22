@@ -95,8 +95,8 @@ func _get_input() -> void:
 		velocity.y = JUMP_SPEED * DOUBLE_JUMP_FACTOR
 		jump_count += 1
 		jump_sound.play()
-	# Only allow jump if player is touching the floor
-	if is_jump_pressed and is_on_floor():
+	# Only allow jump if player is touching the floor or on a ladder
+	if is_jump_pressed and (is_on_floor() or state == State.CLIMB):
 		_change_state(State.JUMP)
 		velocity.y = JUMP_SPEED
 		jump_sound.play()
@@ -135,7 +135,7 @@ func _physics_process(_delta: float) -> void:
 					collider.take_damage()
 				else:
 					hurt()
-
+			
 func reset(_position: Vector2) -> void:
 	position = _position
 	life = Global.PLAYER_DEFAULT_LIFE
