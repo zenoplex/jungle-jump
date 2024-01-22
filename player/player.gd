@@ -117,6 +117,11 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 
+  # TODO: Make player to stay on top of ladder
+	# Grab ladder when player is falling and touching a ladder
+	if state != State.CLIMB and is_on_ladder and velocity.y > 0:
+		_change_state(State.CLIMB)
+
 	if state == State.JUMP and is_on_floor():
 		_change_state(State.IDLE)
 		jump_count = 0
