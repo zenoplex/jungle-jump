@@ -17,7 +17,7 @@ const GRAVITY := 750
 const RUN_SPEED := 150
 const JUMP_SPEED := -300
 const CLIMB_SPEED := 50
-const INVINCIBILITY_TIME := 1.0
+const INVINCIBILITY_TIME := 0.5
 const HURT_PUSHBACK := Vector2(-100, -200)
 const MAX_JUMPS := 2
 const DOUBLE_JUMP_FACTOR := 0.8
@@ -49,7 +49,6 @@ func _change_state(_state: State) -> void:
 		State.HURT:
 			animation_player.play("hurt")
 			velocity.y = HURT_PUSHBACK.y
-			# TODO: This may not be working as velocity.x is reset to 0 in _get_input
 			velocity.x = HURT_PUSHBACK.x * sign(velocity.x)
 			print_debug(velocity.x)
 			life -= 1
@@ -63,6 +62,9 @@ func _change_state(_state: State) -> void:
 			dead.emit()
 
 func _get_input() -> void:
+	if state == State.HURT:
+		return
+	
 	var is_up_pressed := Input.is_action_pressed("up")
 	var is_down_pressed := Input.is_action_pressed("down")
 	var is_right_pressed := Input.is_action_pressed("right")
@@ -116,6 +118,9 @@ func _physics_process(_delta: float) -> void:
 		velocity.y += GRAVITY * _delta
 	
 	move_and_slide()
+
+	if state == State.HURT:
+		return
 
   # TODO: Make player to stay on top of ladder
 	# Grab ladder when player is falling and touching a ladder
